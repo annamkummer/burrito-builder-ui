@@ -49,6 +49,7 @@ class OrderForm extends Component {
     return (
       <form>
         <input
+          className='name-field'
           type='text'
           placeholder='Name'
           name='name'

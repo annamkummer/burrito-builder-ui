@@ -1,7 +1,35 @@
 describe('Form user flow', () => {
 
-    it('...', () => {
-        
+    beforeEach(() => {
+        cy.visit('localhost:3000')
     })
+
+    it('User should be able to input text in the Name field.', () => {
+        cy.get('.name-field').type('ABCD')
+        cy.get('.name-field').should('have.value', 'ABCD')
+    })
+
+    it('User should be able to select ingredients, and see them appear below the buttons.', () => {
+        cy.get('button').first().click()
+        cy.get('form').contains('beans')
+    })
+
+    it('If either name or ingredients is missing, user should not be able to click the Submit button.', () => {
+        cy.get('.submit-btn').should('be.disabled')
+    })
+
+    it('When user has input name and added at least one ingredient, they should be able to click the Submit button.', () => {
+        cy.get('.name-field').type('ABCD')
+        cy.get('button').first().click()
+        cy.get('.submit-btn').click()
+    })
+
+    // it('After clicking Submit, if the order posted correctly, they should see their order appear in the orders section.', () => {
+
+    // })
+
+    // it('If the order did not post correctly, they should see an error message.', () => {
+
+    // })
 
 })
