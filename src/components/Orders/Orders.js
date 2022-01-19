@@ -17,6 +17,7 @@ const Orders = props => {
 
   return (
     <section>
+      {props.error && <p>Oops! There was an issue submitting. Please check your internet and try again!</p>}
       { orderEls.length ? orderEls : <p>No orders yet!</p> }
     </section>
   )

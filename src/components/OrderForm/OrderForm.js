@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './OrderForm.css'
 
 class OrderForm extends Component {
   constructor(props) {
@@ -8,6 +9,10 @@ class OrderForm extends Component {
       name: '',
       ingredients: []
     };
+  }
+
+  checkOrder = () => {
+    return !this.state.name.length || !this.state.ingredients.length
   }
 
   handleNameChange = (e) => {
@@ -24,6 +29,7 @@ class OrderForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.addOrder(this.state)
     this.clearInputs();
   }
 
@@ -55,7 +61,7 @@ class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button className='submit-btn' disabled={this.checkOrder()} onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
